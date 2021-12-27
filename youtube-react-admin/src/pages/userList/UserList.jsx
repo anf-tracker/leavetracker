@@ -13,10 +13,10 @@ export default function UserList() {
   };
   
   const columns = [
-    { field: "id", headerName: "ID", width: 90 },
+    { field: "id", width: 50 },
     {
-      field: "user",
-      headerName: "User",
+      field: "name",
+      headerName: "Name",
       width: 200,
       renderCell: (params) => {
         return (
@@ -27,16 +27,27 @@ export default function UserList() {
         );
       },
     },
-    { field: "email", headerName: "Email", width: 200 },
+    {field: "role", headerName: "Role", width: 150},
+    { field: "location", headerName: "Location", width: 150 },
     {
-      field: "status",
-      headerName: "Status",
+      field: "claimHrs",
+      headerName: "Claim Hrs",
+      width: 150,
+    },
+    {
+      field: "startDate",
+      headerName: "Start",
       width: 120,
     },
     {
-      field: "transaction",
-      headerName: "Transaction Volume",
-      width: 160,
+      field: "endDate",
+      headerName: "End",
+      width: 120,
+    },
+    {
+      field: "isActive",
+      headerName: "Status",
+      width: 120,
     },
     {
       field: "action",
@@ -59,13 +70,21 @@ export default function UserList() {
   ];
 
   return (
+    
     <div className="userList">
+
+      <div className="userTitleContainer">
+        <h1 className="userTitle">Resources</h1>
+        <Link to="/newUser">
+          <button className="userAddButton">Create</button>
+        </Link>
+      </div>
+      <br />
       <DataGrid
         rows={data}
         disableSelectionOnClick
         columns={columns}
-        pageSize={8}
-        checkboxSelection
+        pageSize={10}
       />
     </div>
   );

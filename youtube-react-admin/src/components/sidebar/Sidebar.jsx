@@ -10,8 +10,6 @@ import {
   ChatBubbleOutline,
   WorkOutline,
   Report,
-  PersonAddOutlined,
-  ExitToAppOutlined,
 } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 
@@ -40,22 +38,10 @@ export default function Sidebar() {
                 Resources
               </li>
             </Link>
-            <Link to="/newUser" className="link">
-              <li className="sidebarListItem">
-                <PersonAddOutlined className="sidebarIcon" />
-                Resource Form
-              </li>
-            </Link>
-            <Link to="/leaveForm" className="link">
-              <li className="sidebarListItem">
-                <ExitToAppOutlined className="sidebarIcon" />
-                Leave Form
-              </li>
-            </Link>
             <Link to="/products" className="link">
               <li className="sidebarListItem">
                 <Storefront className="sidebarIcon" />
-                Products
+                Leaves
               </li>
             </Link>
             <li className="sidebarListItem">

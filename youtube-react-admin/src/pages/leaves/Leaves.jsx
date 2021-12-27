@@ -1,11 +1,11 @@
-import "./productList.css";
+import "./leaves.css";
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
 import { productRows } from "../../assests/data/dummyData";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-export default function ProductList() {
+export default function Leaves() {
   const [data, setData] = useState(productRows);
 
   const handleDelete = (id) => {
@@ -13,30 +13,21 @@ export default function ProductList() {
   };
 
   const columns = [
-    { field: "id", headerName: "ID", width: 90 },
+    { field: "id", width: 50 },
     {
-      field: "product",
-      headerName: "Product",
+      field: "Start Date",
+      headerName: "Start Date",
+      width: 160
+    },
+    {
+      field: "End Date",
+      headerName: "End Date",
+      width: 160
+    },
+    {
+      field: "Comment",
+      headerName: "Comment",
       width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="productListItem">
-            <img className="productListImg" src={params.row.img} alt="" />
-            {params.row.name}
-          </div>
-        );
-      },
-    },
-    { field: "stock", headerName: "Stock", width: 200 },
-    {
-      field: "status",
-      headerName: "Status",
-      width: 120,
-    },
-    {
-      field: "price",
-      headerName: "Price",
-      width: 160,
     },
     {
       field: "action",
@@ -46,26 +37,32 @@ export default function ProductList() {
         return (
           <>
             <Link to={"/product/" + params.row.id}>
-              <button className="productListEdit">Edit</button>
+              <button className="leavesEdit">Edit</button>
             </Link>
             <DeleteOutline
-              className="productListDelete"
+              className="leavesDelete"
               onClick={() => handleDelete(params.row.id)}
             />
           </>
         );
       },
-    },
+    }
   ];
 
   return (
-    <div className="productList">
+    <div className="leaves">
+      <div className="leavesContainer">
+        <h1 className="leavesTitle">Leave Summary</h1>
+        <Link to="/leaveForm">
+          <button className="leavesButton">Create</button>
+        </Link>
+      </div>
+      <br />
       <DataGrid
         rows={data}
         disableSelectionOnClick
         columns={columns}
-        pageSize={8}
-        checkboxSelection
+        pageSize={10}
       />
     </div>
   );
