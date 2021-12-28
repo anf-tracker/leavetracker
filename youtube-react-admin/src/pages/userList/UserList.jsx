@@ -1,77 +1,67 @@
 import "./userList.css";
 import { DataGrid } from "@material-ui/data-grid";
-import { DeleteOutline } from "@material-ui/icons";
-import { userRows } from "../../assests/data/dummyData";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Table from "react-bootstrap/Table";
+import dateFormat from "dateformat";
+import Moment from "moment";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+
+//import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
+//import BootstrapTable from "react-bootstrap-table-next";
+//import * as ReactBootstrap from "ReactBootstrap";
 
 export default function UserList() {
-  const [data, setData] = useState(userRows); {/*useEffect*/}
-
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+  const url = "https://anftracker.herokuapp.com/getResources";
+  // const columns = [
+  //   { field: "_id", headerName: "_id" },
+  //   { field: "name", headerName: "name" },
+  //   { field: "location", headerName: "location" },
+  //   { field: "claimHrs", headerName: "clainHrs" },
+  //   { field: "role", headerName: "role" },
+  //   { field: "startDate", headerName: "startDate" },
+  //   { field: "endDate", headerName: "endDate" },
+  //   { field: "createdOn", headerName: "createdOn" },
+  //   { field: "updatedOn", headerName: "updatedOn" },
+  //   { field: "isActive", headerName: "isActive" },
+  //   { field: "uniqueId", headerName: "uniqueId" },
+  // ];
+  // const getDate = (date) => {
+  //   return date.split(" ")[];
+  // };
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios.get(url).then((json) => setData(json.data));
+  }, []);
+  console.log(data);
+  const renderTable = () => {
+    return data.map((user) => {
+      return (
+        <tr>
+          <td>{user.name}</td>
+          <td>{user.location}</td>
+          <td>{user.claimHrs}</td>
+          <td>{user.role}</td>
+          <td>{Moment(user.startDate).format("DD-MM-YYYY")}</td>
+          <td>{dateFormat(user.endDate)}</td>
+          {/* <td>{user.createdOn}</td> */}
+          {/* <td>{user.updatedOn}</td> */}
+          {/* <td>{user.isActive}</td> */}
+          {/* <td>{user.uniqueId}</td> */}
+        </tr>
+      );
+    });
   };
-  
-  const columns = [
-    { field: "id", width: 50 },
-    {
-      field: "name",
-      headerName: "Name",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="userListUser">
-            <img className="userListImg" src={params.row.avatar} alt="" />
-            {params.row.username}
-          </div>
-        );
-      },
-    },
-    {field: "role", headerName: "Role", width: 150},
-    { field: "location", headerName: "Location", width: 150 },
-    {
-      field: "claimHrs",
-      headerName: "Claim Hrs",
-      width: 150,
-    },
-    {
-      field: "startDate",
-      headerName: "Start",
-      width: 120,
-    },
-    {
-      field: "endDate",
-      headerName: "End",
-      width: 120,
-    },
-    {
-      field: "isActive",
-      headerName: "Status",
-      width: 120,
-    },
-    {
-      field: "action",
-      headerName: "Action",
-      width: 150,
-      renderCell: (params) => {
-        return (
-          <>
-            <Link to={"/user/" + params.row.id}>
-              <button className="userListEdit">Edit</button>
-            </Link>
-            <DeleteOutline
-              className="userListDelete"
-              onClick={() => handleDelete(params.row.id)}
-            />
-          </>
-        );
-      },
-    },
-  ];
-
+  //   return (
+  //     // return (
+  //     <div className="userList">
+  //       <BootstrapTable data={data} columns={columns} />
+  //     </div>
+  //   );
+  // }
   return (
-    
-    <div className="userList">
+    <div class="userList">
+
 
       <div className="userTitleContainer">
         <h1 className="userTitle">Resources</h1>
@@ -80,12 +70,31 @@ export default function UserList() {
         </Link>
       </div>
       <br />
-      <DataGrid
-        rows={data}
-        disableSelectionOnClick
-        columns={columns}
-        pageSize={10}
-      />
+
+      <Table stripped bordered hover size="sm">
+        {/* {" "} */}
+        <thead>
+          <tr>
+            <th width="170">Name</th>
+            <th width="170">Location</th>
+            <th width="170">ClaimHrs</th>
+            <th width="170">Role</th>
+            <th width="170">StartDate</th>
+            <th width="170">EndDate</th>
+            {/* <th width="170"> createdOn</th> */}
+            {/* <th width="170">updatedOn</th> */}
+            {/* <th>isActive</th> */}
+            {/* <th>uniqueId</th> */}
+          </tr>
+        </thead>
+        <tbody>{renderTable()}</tbody>
+      </Table>
     </div>
   );
 }
+// return (
+//   <div className="userList">
+//     <DataGrid rows={data} columns={columns} pageSize={10} checkboxSelection />
+//   </div>
+// );
+// }
