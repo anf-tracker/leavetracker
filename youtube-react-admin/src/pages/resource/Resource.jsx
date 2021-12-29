@@ -32,7 +32,7 @@ export default function Resource() {
   },[])
   return (
     <div className="newUser">
-      <h1 className="newUserTitle">New Resource</h1>
+      <h1 className="newUserTitle">Edit Resource</h1>
       <form className="newUserForm" onSubmit={onSubmitRequest}> 
         <div className="newUserItem">
           <label>Full Name</label>

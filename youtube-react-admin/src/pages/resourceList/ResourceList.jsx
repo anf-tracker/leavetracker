@@ -32,7 +32,7 @@ export default function ResourceList() {
           { title: 'Location', field: 'location' },
           {
             title: 'Start date', field: 'startDate', type: 'date', dateSetting: {
-              format: 'dd/MM/yyyy'
+              format: 'dd/mm/yyyy'
             }
           },
           { title: 'End date', field: 'endDate', type: 'date' },
@@ -49,7 +49,7 @@ export default function ResourceList() {
           }
         ]} 
         options={{
-          sorting: false,
+          sorting: true,
           actionsColumnIndex: -1
         }}
       />
