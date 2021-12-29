@@ -46,25 +46,13 @@
 }
 
 .newUserButton{
-    width: 150px;
+    width: 200px;
     border: none;
-    background-color: rgb(29, 104, 0);
+    background-color: darkblue;
     color: white;
     padding: 7px 10px;
     font-weight: 600;
     border-radius: 10px;
     margin-top: 30px;
     cursor: pointer;
-}
-.cancelButton{
-  width: 100px;
-  border: none;
-  margin-left: 10px;
-  background-color: rgb(139, 32, 0);
-  color: white;
-  padding: 7px 10px;
-  font-weight: 600;
-  border-radius: 10px;
-  margin-top: 30px;
-  cursor: pointer;
 }
