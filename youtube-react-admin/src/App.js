@@ -2,10 +2,10 @@ import Sidebar from "./components/sidebar/Sidebar";
 import Topbar from "./components/topbar/Topbar";
 import "./App.css";
 import Home from "./pages/home/Home";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import UserList from "./pages/userList/UserList";
-import User from "./pages/user/User";
-import NewUser from "./pages/newUser/NewUser";
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import ResourceList from "./pages/resourceList/ResourceList";
+import Resource from "./pages/resource/Resource";
+import NewResource from "./pages/newResource/NewResource";
 import Leaves from "./pages/leaves/Leaves";
 import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
@@ -21,14 +21,14 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/users">
-            <UserList />
+          <Route path="/resourceList">
+            <ResourceList />
           </Route>
-          <Route path="/user/:userId">
-            <User />
+          <Route path="/resource/:_id">
+            <Resource />
           </Route>
-          <Route path="/newUser">
-            <NewUser />
+          <Route path="/newResource">
+            <NewResource />
           </Route>
           <Route path="/products">
             <Leaves />
