@@ -11,18 +11,19 @@ import { useEffect } from "react";
 export default function Resource() {
   const history = useHistory();
   const [resourceData, setResourceData] = useState();
-
+  const [userId, setUserId] = useState();
   const onSubmitRequest = (e) => {
     e.preventDefault();
     const reqData = { name: 'Sumit Kumar', startDate: new Date(), endDate: null, location: 'US', claimHrs: 9, role: 'Fullstack' }
-    axios.post(`${config.apiURL}/createResource`, reqData).then(result => { 
+    axios.post(`${config.apiURL}/updateResource/:${userId}`, reqData).then(result => { 
       if (result.status === 200) { 
         history.push('/resourceList');
       }
     }).catch(err => { debugger })
   }
   useEffect(() => { 
-    const _id= '61c18891e79b87a344021e47' // need to read from params
+    const _id = '61c18891e79b87a344021e47' // need to read from params
+    setUserId(_id);
     axios.get(`${config.apiURL}/getResourceById/${_id}`).then(result => { 
       debugger;
       console.log('resource data',result.data)

@@ -27,7 +27,7 @@ export default function ResourceList() {
 
       <MaterialTable
         title="Resource List"
-        columns={[ 
+        columns={[
           { title: 'Name', field: 'name' },
           { title: 'Location', field: 'location' },
           {
@@ -47,7 +47,7 @@ export default function ResourceList() {
             tooltip: "Edit Resource",
             onClick: (event, rowData) => history.push(`/resource/${rowData._id}`)
           }
-        ]} 
+        ]}
         options={{
           sorting: true,
           actionsColumnIndex: -1
