@@ -6,7 +6,7 @@ export default function NewResource() {
   const history = useHistory();
   const onSubmitRequest = (e) => {
     e.preventDefault();
-    const reqData = { name: 'Sumit Kumar', startDate: new Date(), endDate: null, location: 'US', claimHrs: 9, role: 'Fullstack' }
+    const reqData = { name: 'Sumit Kumar', startDate: new Date(), endDate: new Date(), location: 'US', claimHrs: 9, role: 'Fullstack' }
     axios.post(`${config.apiURL}/createResource`, reqData).then(result => { 
       if (result.status === 200) { 
         history.push('/resourceList');
